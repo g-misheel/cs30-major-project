@@ -18,6 +18,7 @@ The goal for this Major Project is to create an Candy Crush clone using JavaScri
 - 3+ different levels
 - Blocks and obstacles
 - Settings page, button
-- Different types of candies (if you get 5 or more a 'bomb' candy will be created, etc.)
+- Different 'types' of candies (if you get 5 or more a 'bomb' candy will be created, etc.)
 - Crushing, bouncing effect when candies swap places
 - Different versions (Ex; jelly, soda, cake, chocolate etc.)
+- Money, coins, reward, purchases
