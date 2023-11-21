@@ -11,6 +11,7 @@ The goal for this Major Project is to create an Candy Crush clone using JavaScri
 - Clear instructions at the start
 - Background 
 - Start, restart buttons
+- Goal objective
 
 ## Nice To Have List
 - Good design
