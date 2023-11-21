@@ -1,11 +1,19 @@
 # Project Description
 
-My project will be about ...
+"Candy Crush" Replica. 
+The goal for this Major Project is to create an Candy Crush clone using p5.js
 
 ## Needs To Have List
-- thing1
-- thing2
+- Different levels
+- Music, sound effects
+- Score, highscore, level tracker
+- Start page
+- Clear instructions at the start
+- Background 
 
 ## Nice To Have List
-- other thing1
-- other thing2
+- Good design
+- 3+ different levels
+- Blocks and obstacles
+- Different types of candies (if you get 5 or more a 'bomb' candy will be created, etc.)
+- Crushing, bouncing effect when candies swap places
