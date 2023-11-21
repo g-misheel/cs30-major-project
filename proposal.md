@@ -1,7 +1,7 @@
 # Project Description
 
 "Candy Crush" Replica. 
-The goal for this Major Project is to create an Candy Crush clone using p5.js
+The goal for this Major Project is to create an Candy Crush clone using JavaScript in p5.js
 
 ## Needs To Have List
 - Different levels
@@ -17,3 +17,4 @@ The goal for this Major Project is to create an Candy Crush clone using p5.js
 - Blocks and obstacles
 - Different types of candies (if you get 5 or more a 'bomb' candy will be created, etc.)
 - Crushing, bouncing effect when candies swap places
+- Different versions (Ex; jelly, soda, cake, chocolate etc.)
