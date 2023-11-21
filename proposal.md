@@ -6,7 +6,7 @@ The goal for this Major Project is to create an Candy Crush clone using JavaScri
 ## Needs To Have List
 - Different levels
 - Music, sound effects
-- Score, highscore, level tracker
+- Score, highscore, level, number of moves tracker
 - Start page
 - Clear instructions at the start
 - Background 
