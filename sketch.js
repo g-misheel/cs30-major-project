@@ -31,11 +31,14 @@ function startGame() {
       let tile = document.createElement("img");
       tile.id = y.toString() + "-" + x.toString();
       //set the tile.src to a random candy
-      tile.src = "./images" + randomCandy() + "-candy" + ".png"; //the name of your image file
+      tile.src = "./images" + randomCandy() + ".png"; //the name of your image file
 
 
       //11:25
-      document.getElementById()
+      document.getElementById("board").append(tile);
+      row.push(tile);
     }
+    board.push(row);
   }
+  console.log(board);
 }

@@ -1,7 +1,7 @@
 # Project Description
 
-"Candy Crush" Replica. 
-The goal for this Major Project is to create an Candy Crush clone using JavaScript in p5.js
+"Candy Crush" Replica 
+The goal for this Major Project is to create an Candy Crush clone using JavaScript in p5.js.
 
 ## Needs To Have List
 - Different levels
