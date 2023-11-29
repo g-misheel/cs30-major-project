@@ -57,27 +57,27 @@ class Candy {
 
 
 
-// function randomCandy() {
-//   return candies[Math.floor(Math.random() * candies.length)];  //0 - 8.99
-// }
+function randomCandy() {
+  return candies[Math.floor(Math.random() * candies.length)];  //0 - 8.99
+}
 
-// function startGame() {
-//   for (let y = 0; y < rows; y++) {
-//     let row = [];
-//     for (let x = 0; x < columns; x++) {
+function startGame() {
+  for (let y = 0; y < rows; y++) {
+    let row = [];
+    for (let x = 0; x < columns; x++) {
       //  <img id="0-0" src="./images/red.png">
 
-      // let tile = document.createElement("img");
-      // tile.id = y.toString() + "-" + x.toString();
-      //set the tile.src to a random candy
-      // tile.src = "./images" + randomCandy() + ".png"; //the name of your image file
+      let tile = document.createElement("img");
+      tile.id = y.toString() + "-" + x.toString();
+      // set the tile.src to a random candy
+      tile.src = "./images" + randomCandy() + ".png"; //the name of your image file
 
 
-      //11:25
-      // document.getElementById("board").append(tile);
-      // row.push(tile);
-//     }
-//     board.push(row);
-//   }
-//   // console.log(board);
-// }
+      // 11:25
+      document.getElementById("board").append(tile);
+      row.push(tile);
+    }
+    board.push(row);
+  }
+  console.log(board);
+}
