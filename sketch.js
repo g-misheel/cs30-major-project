@@ -5,55 +5,25 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let candies;
-let board;
-let rows;
-let columns;
-let score;
-let blueImg;
-let greenImg;
-let lightblueImg;
-let lightgreenImg;
-let orangeImg;
-let pinkImg;
-let redImg;
-let whiteImg;
-let yellowImg;
 
+let candies = ["blue", "green", "lightblue", "lightgreen", "orange", "pink", "red", "white", "yellow"];
+let board = [];
+let rows = 9;
+let columns = 9;
+let score = 0;
 
-function preload() {
-  blueImg = loadImage("images/blue.png");
-  greenImg = loadImage("images/green.png");
-  lightblueImg = loadImage("images/lightblue.png");
-  lightgreenImg = loadImage("images/lightgreen.png");
-  orangeImg = loadImage("images/orange.png");
-  pinkImg = loadImage("images/pink.png");
-  redImg = loadImage("images/red.png");
-  whiteImg = loadImage("images/white.png");
-  yellowImg = loadImage("images/yellow.png");
-}
+// function preload() {
+  
+// }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  candies = ["blue", "green", "lightblue", "lightgreen", "orange", "pink", "red", "white", "yellow"];
-  // candies = [blueImg, greenImg, lightblueImg, lightgreenImg, orangeImg, pinkImg, redImg, whiteImg, yellowImg];
-  board = [];
-  rows = 9;
-  columns = 9;
-  score = 0;
+  startGame();
+
 }
 
 function draw() {
-  // startGame();
 }
 
-class Candy {
-  constructor(x, y, type) {
-    this.x = x;
-    this.y = y;
-    this.type = type;
-  }
-}
 
 
 
@@ -66,14 +36,26 @@ function startGame() {
     let row = [];
     for (let x = 0; x < columns; x++) {
       //  <img id="0-0" src="./images/red.png">
-
+      
       let tile = document.createElement("img");
       tile.id = y.toString() + "-" + x.toString();
       // set the tile.src to a random candy
-      tile.src = "./images" + randomCandy() + ".png"; //the name of your image file
+      tile.src = "./images/" + randomCandy() + ".png"; //the name of your image file
+      
+      //DRAG 
+
+      //https://editor.p5js.org/utopianssuck@gmail.com/sketches/tBSYzMejd
+      //https://www.youtube.com/watch?v=o4UmGrPst_c
 
 
-      // 11:25
+      tile.addEventListener("dragstart", dragStart); //click on a candy, start the dragging process
+      tile.addEventListener("dragover", dragOver); //moving mose to drag candy
+      tile.addEventListener("dragenter", dragEnter); //drag candy on top of another candy
+      tile.addEventListener("dragleave", dragLeave); //leave candy on top of another candy
+      tile.addEventListener("dragend", dragEnd); //drag process ends, swap candies
+      tile.addEventListener("drop", dragDrop); //drop candy
+
+
       document.getElementById("board").append(tile);
       row.push(tile);
     }
@@ -81,3 +63,35 @@ function startGame() {
   }
   console.log(board);
 }
+
+function dragStart() {
+  console.log(this.id, "dragstart");
+}
+
+function dragOver() {
+  console.log(this.id, "dragover");
+}
+
+function dragEnter() {
+  console.log(this.id, "dragenter");
+}
+
+function dragLeave() {
+  console.log(this.id, "dragleave");
+}
+
+function dragEnd() {
+  console.log(this.id, "dragend");
+}
+
+function dragDrop() {
+  console.log(this.id, "drop");
+}
+
+// class Candy {
+//   constructor(x, y, type) {
+//     this.x = x;
+//     this.y = y;
+//     this.type = type;
+//   }
+// }
