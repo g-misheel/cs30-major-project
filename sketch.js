@@ -12,6 +12,9 @@ let rows = 9;
 let columns = 9;
 let score = 0;
 
+let currTile; //current tile
+let otherTile;
+
 // function preload() {
   
 // }
@@ -52,8 +55,8 @@ function startGame() {
       tile.addEventListener("dragover", dragOver); //moving mose to drag candy
       tile.addEventListener("dragenter", dragEnter); //drag candy on top of another candy
       tile.addEventListener("dragleave", dragLeave); //leave candy on top of another candy
-      tile.addEventListener("dragend", dragEnd); //drag process ends, swap candies
       tile.addEventListener("drop", dragDrop); //drop candy
+      tile.addEventListener("dragend", dragEnd); //drag process ends, swap candies
 
 
       document.getElementById("board").append(tile);
@@ -64,28 +67,83 @@ function startGame() {
   console.log(board);
 }
 
+
+//DRAG FUNCTIONS
 function dragStart() {
-  console.log(this.id, "dragstart");
+  //the tile that was clicked on that is getting dragged
+  currTile = this;
 }
 
-function dragOver() {
-  console.log(this.id, "dragover");
+function dragOver(e) {
+  e.preventDefault();
 }
 
-function dragEnter() {
-  console.log(this.id, "dragenter");
+function dragEnter(e) {
+  e.preventDefault();
 }
 
 function dragLeave() {
-  console.log(this.id, "dragleave");
+
 }
 
 function dragEnd() {
-  console.log(this.id, "dragend");
+
+  let currCoords = currTile.id.split("-");  //id-"0-0"  ->  ["0", "0"]
+  let y = parseInt(currCoords[0]); //row
+  let x = parseInt(currCoords[1]); //column
+
+  let otherCoords = otherTile.id.split("-");
+  let y2 = parseInt(otherCoords[0]);
+  let x2 = parseInt(otherCoords[1]);
+
+  //check if on left
+  let moveLeft;
+  let moveRight;
+  let moveDown;
+  let moveUp;
+  let isAdjacent;
+
+  if (x2 === x - 1 && y2 === y) {
+    moveLeft = true;
+  }
+
+  //check if on right 
+  if (x2 === x + 1 && y2 === y) {
+    moveRight = true;
+  }
+
+  //check if up 
+  if (x2 === x  && y2 === y - 1) {
+    moveUp = true;
+  }
+
+  //check if down
+  if (x2 === x && y2 === y + 1) {
+    moveDown = true;
+  }
+
+  //check if adjacent
+  if (moveDown || moveLeft || moveRight || moveUp) {
+    isAdjacent = true;
+  }
+
+  if (isAdjacent) {
+    let currImg = currTile.src;
+    let otherImg = otherTile.src;
+    //swap the candies
+    currTile.src = otherImg;
+    otherTile.src = currImg;
+  }
 }
 
 function dragDrop() {
-  console.log(this.id, "drop");
+  //tile that was dropped on
+  otherTile = this;
+}
+
+//22:49
+function crushCandy() {
+
 }
 
 // class Candy {
