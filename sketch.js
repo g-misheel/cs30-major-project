@@ -143,7 +143,14 @@ function dragDrop() {
 
 //22:49
 function crushCandy() {
+  //crush Five
+  //crush Four
+  
+  crushThree();
+}
 
+function crushThree() {
+  
 }
 
 // class Candy {
