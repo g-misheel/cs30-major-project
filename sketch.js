@@ -22,9 +22,15 @@ let otherTile;
 function setup() {
   startGame();
 
+  setInterval(function() {
+    crushCandy();
+    
+  }, 100);
+  
 }
 
 function draw() {
+  
 }
 
 
@@ -150,7 +156,34 @@ function crushCandy() {
 }
 
 function crushThree() {
-  
+  //check row 
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < columns-2; x++) {
+      let candy1 = board[y][x];
+      let candy2 = board[y][x+1];
+      let candy3 = board[y][x+2];
+      if (candy1.src === candy2.src && candy2.src === candy3.src && !candy1.src.includes("blank")) {
+        candy1.src = "./images/blank.png";
+        candy2.src = "./images/blank.png";
+        candy3.src = "./images/blank.png";
+        
+      }
+    }
+  }
+
+  //check columns
+  for (let x = 0; x < columns; x++) {
+    for (let y = 0; y < rows-2; y++) {
+      let candy1 = board[y][x];
+      let candy2 = board[y+1][x];
+      let candy3 = board[y+2][x];
+      if (candy1.src === candy2.src && candy2.src === candy3.src && !candy1.src.includes("blank")) {
+        candy1.src = "./images/blank.png";
+        candy2.src = "./images/blank.png";
+        candy3.src = "./images/blank.png";
+      }
+    }
+  }
 }
 
 // class Candy {
