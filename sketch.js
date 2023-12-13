@@ -14,10 +14,8 @@ let score = 0;
 
 let currTile; //current tile
 let otherTile;
+let count;
 
-// function preload() {
-  
-// }
 
 function setup() {
   startGame();
@@ -154,11 +152,14 @@ function dragEnd() {
       otherTile.src = currImg;
     }
   }
+
+  
 }
 
 function dragDrop() {
   //tile that was dropped on
   otherTile = this;
+  count ++;
 }
 
 //22:49
@@ -235,6 +236,10 @@ function checkValid() {
 
   return false;
 }
+
+// function checkCandyType() {
+  
+// }
 
 function slideCandy() {
   for (let x = 0; x < columns; x++) {
