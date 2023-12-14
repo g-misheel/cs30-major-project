@@ -14,7 +14,8 @@ let score = 0;
 
 let currTile; //current tile
 let otherTile;
-let count;
+let countMoves = 0; //count the number of moves
+let targetMoves; //Objective/Target # of moves that is allowed in the level
 
 
 function setup() {
@@ -159,7 +160,7 @@ function dragEnd() {
 function dragDrop() {
   //tile that was dropped on
   otherTile = this;
-  count ++;
+  countMoves ++;
 }
 
 //22:49
