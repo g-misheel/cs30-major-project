@@ -15,7 +15,8 @@ let score = 0;
 let currTile; //current tile
 let otherTile;
 let countMoves = 0; //count the number of moves
-let targetMoves; //Objective/Target # of moves that is allowed in the level
+let targetMoves = 12; //Objective/Target # of moves that is allowed in the level
+let targetScore = 120;
 
 
 function setup() {
@@ -263,6 +264,15 @@ function generateCandy() {
     if (board[0][x].src.includes("blank")) {
       board[0][x].src = "./images/" + randomCandy() + ".png";
     }
+  }
+}
+
+//function that checks the # of moves and score
+function checkObjective(){
+  let state;
+  if (targetMoves === countMoves && targetScore === score) {
+    state = true;
+    
   }
 }
 
