@@ -284,9 +284,9 @@ function generateCandy() {
 
 //function that checks the # of moves and score
 function checkObjective(){
-  let state;
+  let validState;
   if (targetMoves === countMoves && targetScore === score) {
-    state = true;
+    validState = true;
     
   }
 }
