@@ -34,3 +34,7 @@ canvas {
 h1 {
   color: rgb(99, 0, 138);
 }
+
+p {
+  background-image: url("startpage.jpg");
+}
