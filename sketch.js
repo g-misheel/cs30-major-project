@@ -18,21 +18,18 @@ let countMoves = 0; //count the number of moves
 let targetMoves = 12; //Objective/Target # of moves that is allowed in the level
 let targetScore = 120;
 
-let state = "start screen";
 let leftSide = 200;
 let topSide = 150;
 let boxWidth = 100;
 let boxHeight = 50;
 
+
+
 function setup() {
-  
-  
-  // if (state === "game") {
-  //   startGame();
-  // }
 
   startGame();
-
+  
+  
   setInterval(function() {
     crushCandy();
     slideCandy();
@@ -57,6 +54,9 @@ function randomCandy() {
 }
 
 function startGame() {
+  
+  playBgMusic();
+
   for (let y = 0; y < rows; y++) {
     let row = [];
     for (let x = 0; x < columns; x++) {
@@ -87,6 +87,8 @@ function startGame() {
     board.push(row);
   }
   console.log(board);
+
+
 }
 
 
@@ -201,6 +203,7 @@ function crushThree() {
         candy3.src = "./images/blank.png";
 
         //update score
+        playPop();
         score += 10;
         
       }
@@ -219,6 +222,7 @@ function crushThree() {
         candy3.src = "./images/blank.png";
 
         //update score
+        playPop();
         score += 10;
 
       }
@@ -292,30 +296,17 @@ function checkObjective(){
 }
 
 
-function startScreen() {
-  background("white");
-  
-  fill("black");
-  rect(leftSide, topSide, boxWidth, boxHeight);
-}
-
-function mousePressed() {
-  if (state === "start screen") {
-    let isClicked = isInRect(mouseX, mouseY, topSide, topSide + boxHeight, leftSide, leftSide + boxWidth);
-    if (isClicked) {
-      state = "game";
-    }
-  }
-}
-
 function isInRect(x, y, top, bottom, left, right) {
   return x >= left && x <= right && y >= top && y <= bottom;
 }
 
-// class Candy {
-//   constructor(x, y, type) {
-//     this.x = x;
-//     this.y = y;
-//     this.type = type;
-//   }
-// }
+function playBgMusic () {
+  let backgroundMusic = new Audio("game-sounds/background-music.mp3");
+  backgroundMusic.play();
+}
+
+function playPop () {
+  let popSound = new Audio("game-sounds/pop1.ogg");
+  popSound.play();
+}
+
