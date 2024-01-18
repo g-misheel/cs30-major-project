@@ -174,9 +174,12 @@ function dragEnd() {
   
 }
 
+
+
 function dragDrop() {
   //tile that was dropped on
   otherTile = this;
+  targetMoves --;
   countMoves ++;
 }
 
@@ -188,6 +191,7 @@ function crushCandy() {
   
   crushThree();
   document.getElementById("score").innerText = score;
+  document.getElementById("moves").innerText = targetMoves;
 }
 
 function crushThree() {
@@ -273,7 +277,7 @@ function slideCandy() {
     }
 
     for (let y = ind; y >= 0; y--) {
-      board[y][x].src = "./images/blank.png";
+      board[y][x].src = "/images/blank.png";
     }
   }
 }
@@ -281,7 +285,7 @@ function slideCandy() {
 function generateCandy() {
   for (let x = 0; x < columns;  x++) {
     if (board[0][x].src.includes("blank")) {
-      board[0][x].src = "./images/" + randomCandy() + ".png";
+      board[0][x].src = "/images/" + randomCandy() + ".png";
     }
   }
 }
@@ -289,24 +293,32 @@ function generateCandy() {
 //function that checks the # of moves and score
 function checkObjective(){
   let validState;
-  if (targetMoves === countMoves && targetScore === score) {
+  if (targetMoves >= 0) {
+    //win or go to next level
+    if (score >= targetScore) {
+      congrats(score, countMoves);
+    }
+    else {
+      playAgain(score, countMoves);
+    }
     validState = true;
-    
   }
 }
 
-
-function isInRect(x, y, top, bottom, left, right) {
-  return x >= left && x <= right && y >= top && y <= bottom;
+function congrats(finalScore, numberMoves) {
+  //
+}
+function playAgain(finalScore, numberMoves) {
+  //
 }
 
 function playBgMusic () {
-  let backgroundMusic = new Audio("game-sounds/background-music.mp3");
+  let backgroundMusic = new Audio("sounds/background-music.mp3");
   backgroundMusic.play();
 }
 
 function playPop () {
-  let popSound = new Audio("game-sounds/pop1.ogg");
+  let popSound = new Audio("sounds/pop1.ogg");
   popSound.play();
 }
 
