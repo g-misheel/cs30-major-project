@@ -40,9 +40,6 @@ function setup() {
 }
 
 function draw() {
-  // if (state === "start screen") {
-  //   startScreen();
-  // }
   
 }
 
