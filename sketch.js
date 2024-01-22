@@ -5,24 +5,22 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-
+//candy variables
 let candies = ["blue", "green", "lightblue", "lightgreen", "orange", "pink", "red", "white", "yellow"];
 let board = [];
 let rows = 9;
 let columns = 9;
 let score = 0;
 
+//function variables
 let currTile; //current tile
 let otherTile;
 let countMoves = 0; //count the number of moves
 let targetMoves = 12; //Objective/Target # of moves that is allowed in the level
 let targetScore = 120;
 
-let leftSide = 200;
-let topSide = 150;
-let boxWidth = 100;
-let boxHeight = 50;
-
+//level variables
+let level = 1;
 
 
 function setup() {
@@ -34,15 +32,14 @@ function setup() {
     crushCandy();
     slideCandy();
     generateCandy();
+    checkObjective()
     
   }, 100); //every 1/10th of a second
+
+  document.getElementById("play-again-button").addEventListener("click", playAgainButtonClicked);
+  document.getElementById("next-level-button").addEventListener("click", nextLevelButtonClicked);
   
 }
-
-function draw() {
-  
-}
-
 
 
 
@@ -50,21 +47,21 @@ function randomCandy() {
   return candies[Math.floor(Math.random() * candies.length)];  //0 - 8.99
 }
 
+//game function
 function startGame() {
   
+  //background music
   playBgMusic();
 
   for (let y = 0; y < rows; y++) {
     let row = [];
     for (let x = 0; x < columns; x++) {
-      //  <img id="0-0" src="./images/red.png">
       
       let tile = document.createElement("img");
       tile.id = y.toString() + "-" + x.toString();
       // set the tile.src to a random candy
       tile.src = "./images/" + randomCandy() + ".png"; //the name of your image file
       
-      //DRAG 
 
       //https://editor.p5js.org/utopianssuck@gmail.com/sketches/tBSYzMejd
       //https://www.youtube.com/watch?v=o4UmGrPst_c
@@ -176,19 +173,21 @@ function dragEnd() {
 function dragDrop() {
   //tile that was dropped on
   otherTile = this;
-  targetMoves --;
-  countMoves ++;
+  if (targetMoves > 0){ //no negative #'s
+    targetMoves --;
+    countMoves ++;
+  }
+  
 }
 
 //22:49
 function crushCandy() {
-  //crush Five
-  //crush Four
-  
+  crushFour();
   
   crushThree();
   document.getElementById("score").innerText = score;
   document.getElementById("moves").innerText = targetMoves;
+  document.getElementById("level").innerText = level;
 }
 
 function crushThree() {
@@ -211,6 +210,7 @@ function crushThree() {
     }
   }
 
+  
   //check columns
   for (let x = 0; x < columns; x++) {
     for (let y = 0; y < rows-2; y++) {
@@ -225,6 +225,51 @@ function crushThree() {
         //update score
         playPop();
         score += 10;
+
+      }
+    }
+  }
+}
+
+function crushFour() {
+
+  //check rows
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < columns-3; x++) {
+      let candy1 = board[y][x];
+      let candy2 = board[y][x+1];
+      let candy3 = board[y][x+2];
+      let candy4 = board[y][x+3];
+      if (candy1.src === candy2.src && candy2.src === candy3.src && candy3.src === candy4.src && !candy1.src.includes("blank")) {
+        candy1.src = "./images/blank.png";
+        candy2.src = "./images/blank.png";
+        candy3.src = "./images/blank.png";
+        candy4.src = "./images/blank.png";
+
+        //update score
+        playPlop();
+        score += 20;
+        
+      }
+    }
+  }
+
+  //check columns
+  for (let x = 0; x < columns; x++) {
+    for (let y = 0; y < rows-3; y++) {
+      let candy1 = board[y][x];
+      let candy2 = board[y+1][x];
+      let candy3 = board[y+2][x];
+      let candy4 = board[y+3][x];
+      if (candy1.src === candy2.src && candy2.src === candy3.src && candy3.src === candy4.src && !candy1.src.includes("blank")) {
+        candy1.src = "./images/blank.png";
+        candy2.src = "./images/blank.png";
+        candy3.src = "./images/blank.png";
+        candy4.src = "./images/blank.png";
+
+        //update score
+        playPlop();
+        score += 20;
 
       }
     }
@@ -259,9 +304,6 @@ function checkValid() {
   return false;
 }
 
-// function checkCandyType() {
-  
-// }
 
 function slideCandy() {
   for (let x = 0; x < columns; x++) {
@@ -287,35 +329,105 @@ function generateCandy() {
   }
 }
 
-//function that checks the # of moves and score
-function checkObjective(){
-  let validState;
-  if (targetMoves >= 0) {
-    //win or go to next level
-    if (score >= targetScore) {
+//function that checks the # of moves and score to determine if the player can go to next level
+function checkObjective() {
+  if (score >= targetScore) {
+    if (level < 4) {
       congrats(score, countMoves);
+    } 
+    
+  } 
+    else if (targetMoves <= 0) {
+    playAgain(score, countMoves);
     }
-    else {
-      playAgain(score, countMoves);
-    }
-    validState = true;
-  }
 }
 
 function congrats(finalScore, numberMoves) {
-  //
-}
-function playAgain(finalScore, numberMoves) {
-  //
+
+  // Display a congratulatory message on the screen
+  const congratsContent = document.getElementById("congrats-content");
+  congratsContent.innerText = `You completed the level!\nFinal Score: ${finalScore}\nNumber of Moves: ${numberMoves}`;
+
+  // Show the congrats message and "Next Level" button
+  document.getElementById("congrats-message").style.display = "block";
+  document.getElementById("next-level-button").style.display = "block";
 }
 
+function playAgain(finalScore, numberMoves) {
+  // Display a message for playing again on the screen
+  const playAgainContent = document.getElementById("play-again-content");
+  playAgainContent.innerText = `You didn't reach the target score. Try again!\nFinal Score: ${finalScore}\nNumber of Moves: ${numberMoves}`;
+
+  // Show the play-again message and "Play Again" button
+  document.getElementById("play-again-message").style.display = "block";
+  document.getElementById("play-again-button").style.display = "block";
+}
+
+function nextLevel() {
+  if (level < 4) { // Check if the current level is less than the maximum level
+    level++;
+    targetMoves -= 2;
+    targetScore += 10;
+
+    // Update UI to reflect the new level, target moves, and target score
+    document.getElementById("level").innerText = level;
+    document.getElementById("moves").innerText = targetMoves;
+    document.getElementById("target-score").innerText = targetScore;
+  }
+}
+
+function playAgainButtonClicked() {
+  resetGame();
+  document.getElementById("play-again-message").style.display = "none";
+}
+
+function nextLevelButtonClicked() {
+  resetGame();
+  document.getElementById("congrats-message").style.display = "none";
+}
+
+function resetGame() {
+  // Reset game variables
+  score = 0;
+  countMoves = 0;
+  targetMoves = 12;
+
+  // Clear the game board and generate a new one
+  clearGameBoard();
+  startGame();
+
+  // Update UI to reflect the reset values
+  document.getElementById("score").innerText = score;
+  document.getElementById("moves").innerText = targetMoves;
+  document.getElementById("level").innerText = level;
+
+  document.getElementById("congrats-message").style.display = "none";
+  document.getElementById("play-again-message").style.display = "none";
+}
+
+function clearGameBoard() {
+  // Clear the board variable
+  board = [];
+
+  // Clear the HTML content of the board element
+  const boardElement = document.getElementById("board");
+  boardElement.innerHTML = '';
+}
+
+//background music
 function playBgMusic () {
   let backgroundMusic = new Audio("sounds/background-music.mp3");
   backgroundMusic.play();
 }
 
+//sound when 3 candies are crushed
 function playPop () {
   let popSound = new Audio("sounds/pop1.ogg");
   popSound.play();
 }
 
+//sound when 4 candies are crushed
+function playPlop () {
+  let plopSound = new Audio("sounds/plop.ogg");
+  plopSound.play();
+}

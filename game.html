@@ -26,8 +26,21 @@
     <script src="sketch.js"></script>
     <h1>Score: <span id="score">0</span></h1>
     <h2>Moves: <span id="moves">0</span></h2>
+    <h2>Level: <span id="level">1</span></h2>
     <div id="board">
 
+    </div>
+    <div id="congrats-message" style="display: none;">
+      <h2>Congratulations!</h2>
+      <p id="congrats-content"></p>
+      <button onclick="nextLevel()">Next Level</button>
+    </div>
+    
+    <div id="play-again-message" style="display: none;">
+      <h2>Try Again!</h2>
+      <p id="play-again-content"></p>
+      <button id="play-again-button" style="display: none;">Play Again</button>
+      <button id="next-level-button" style="display: none;">Next Level</button>
     </div>
   </body>
 </html>
