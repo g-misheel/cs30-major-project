@@ -15,6 +15,38 @@ canvas {
   display: block;
 }
 
+#congrats-message, #play-again-message {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#congrats-message h1, #play-again-message h1 {
+  font-size: 28px;
+  color: #ffb7f8; 
+}
+
+#congrats-content, #play-again-content {
+  font-size: 18px;
+  color: #430244; 
+  margin-bottom: 20px;
+}
+
+#next-level-button, #play-again-button {
+  background-color: #cf79b4; 
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 20px;
+  margin-left: 45%;
+}
+
+#next-level-button:hover, #play-again-button:hover {
+  background-color: #cf8ee1; /* Darker green color on hover */
+}
 
 #board {
   width: 540px;
@@ -39,4 +71,5 @@ h1 {
 h2 {
   color: rgb(99, 0, 138);
   text-align: left;
+  margin: 20px;
 }
